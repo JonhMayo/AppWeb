@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoundRobin Simulation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row" id="process-container"></div>
+    </div>
+
+    <script>
+        const codeLines = [
+            'a = 1 + 2;',
+            'console.log("1 + 2");',
+            'b = 3 + 4;',
+            'console.log("3 + 4");',
+            'c = 5 + 6;',
+            'console.log("5 + 6");',
+            'd = 7 + 8;',
+            'console.log("7 + 8");',
+        ];
+
+        // Función para elegir una línea de código aleatoria
+        function getRandomCodeLine() {
+            const randomIndex = Math.floor(Math.random() * codeLines.length);
+            return codeLines[randomIndex];
+        }
+
+        // Función para inicializar procesos
+        function initializeProcesses(processCount) {
+            const processes = [];
+
+            for (let i = 1; i <= processCount; i++) {
+                const process = {
+                    id: i,
+                    code: []
+                };
+
+                // Añadir entre 2 y 5 líneas de código aleatorias por proceso
+                const codeLineCount = Math.floor(Math.random() * 4) + 2;
+
+                for (let j = 0; j < codeLineCount; j++) {
+                    process.code.push(getRandomCodeLine());
+                }
+
+                processes.push(process);
+            }
+
+            return processes;
+        }
+
+        // Función para iniciar la simulación
+        function startSimulation(processes) {
+            const container = document.getElementById('process-container');
+            let activeProcesses = processes.map(process => ({...process, currentLine: 0}));
+
+            // Simulación de ejecución
+            while (activeProcesses.length > 0) {
+                for (let i = 0; i < activeProcesses.length; i++) {
+                    const process = activeProcesses[i];
+
+                    // Verificar si el proceso ha terminado
+                    if (process.currentLine >= process.code.length) {
+                        // Mostrar mensaje de proceso terminado
+                        const card = document.createElement('div');
+                        card.className = 'col-12 mb-3';
+                        card.innerHTML = `
+                            <div class="card">
+                                <div class="card-header">
+                                    Proceso ${process.id}
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">Proceso terminado</p>
+                                </div>
+                            </div>
+                        `;
+                        container.appendChild(card);
+
+                        // Remover proceso terminado
+                        activeProcesses.splice(i, 1);
+                        i--; // Ajustar índice después de remover un proceso
+                        continue;
+                    }
+
+                    // Obtener la línea de código actual y actualizar el índice
+                    const codeLine = process.code[process.currentLine];
+                    process.currentLine++;
+
+                    // Crear la card de Bootstrap para mostrar el proceso y la línea de código
+                    const card = document.createElement('div');
+                    card.className = 'col-12 mb-3';
+                    card.innerHTML = `
+                        <div class="card">
+                            <div class="card-header">
+                                Proceso ${process.id}
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text">Línea de código: ${codeLine}</p>
+                            </div>
+                        </div>
+                    `;
+
+                    container.appendChild(card);
+                }
+            }
+        }
+
+        const processCount = prompt("Ingrese el número de procesos a simular:", "3");
+        const processes = initializeProcesses(Number(processCount));
+        startSimulation(processes);
+    </script>
+</body>
+</html>

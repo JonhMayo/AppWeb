@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<!--Comentarios-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mi Página</title>
+        <style>
+            h1 {
+                color: blue;
+            }
+            h2 {
+                color: red;
+            }
+            pre {
+                color:chocolate;
+            }
+            body {
+                background-color:aquamarine;
+            }
+            div {
+                margin-left: 50px;
+                margin-right: 80px;
+                padding: 10px;
+                border: 5px solid rgb(17, 187, 74);
+                border-radius: 30%;
+            }
+        </style>
+    </head>
+    <body>
+        <a href="https://google.com">
+        <img src="https://picsum.photos/500/300" alt="Imagen de prueba"></a>
+        Texto 0
+        Texto 1  <br  /> Texto 2 
+        <div class="textoEjemplo"> Texto 3 </div>
+        <pre>
+Texto que se debe desplegar
+respetando los saltos de línea       y espacios
+        </pre>
+        <hr />
+        <h1 class="e1">Encabezado 1</h1>
+        <h2>Encabezado 2</h2>
+        <h3>Encabezado 1</h3>
+        <h4>Encabezado 2</h4>
+        <hr>
+        <ol>
+            <li> Elemento 1</li>
+            <li> Elemento 2</li>
+            <li> Elemento 3</li>   
+        </ol>
+        <ul>
+            <li> <a href="https://classroom.google.com/">classroom</a></li>
+            <li> Elemento 2</li>
+            <li> Elemento 3</li>   
+        </ul>
+        <button onclick="changeColor()">Cambiar</button>
+        <hr>
+        <table border ="1" width="78%" height="98">
+            <caption>Título</caption>
+            <tr>
+                <th width="100%" colspan="2" height="19">Encabezado de Celda Doble</th>
+            </tr>
+            <tr>
+                <th width="50%" height="17">Encabezado de Celda 1</th>
+                <th width="50%" height="17">Encabezado de Celda 2</th>
+            </tr>
+            <tr>
+                <td width="50%" height="19">Dato 1,1</td>
+                <td width="50%" height="19">Dato 1,2</td>
+            </tr>
+            <tr>
+                <td width="50%" height="19">Dato 2,1</td>
+                <td width="50%" height="19">Dato 2,2</td>
+            </tr>
+        </table>
+        <form action="http://www.google.com" method="get">
+            Nombre: <input type="text" name="T1" size="20"><br>
+
+            Pasatiempos:<br>
+            <input type="checkbox" name="C1" value="ON">Leer
+            <input type="checkbox" name="C1" value="ON">Videojuegos
+            <input type="checkbox" name="C1" value="ON">Ninguno <br>
+            Comentarios:<br>
+            <textarea rows="2" name="S1" cols="20"></textarea><br>
+            <input type="submit" value="Submit" name="B1">
+            <input type="reset" value="Reset" name="B2">
+        </form>
+        <script lang="javascript">
+            /*
+            let finDeTranmisionDeDatos = function(id, callback){
+                console.log('Transferencia',id,'terminada');
+                callback();
+            }
+            let obtenDatosDeInternet = function(id, duracion, callback){
+                console.log('Proceso',id,'obteniendo datos de internet');
+                setTimeout(finDeTranmisionDeDatos,duracion,id,callback);
+            }
+            //obtenDatosDeInternet(1, 4000, function(){
+              //  console.log("Programa Terminado");
+            //});
+            //Callbacks anidados
+            obtenDatosDeInternet(1, 2000, function(){
+                obtenDatosDeInternet(2, 2000, function(){
+                    obtenDatosDeInternet(3, 1500, function(){
+                        obtenDatosDeInternet(4, 2000, function(){
+                            console.log("Programa terminado");
+                        });
+                    });
+                });
+            });
+*/
+            const promesa = function(){
+                return new Promise(function(resolve, reject){
+                    const decision = "cumplida";
+                    const resultadoEsperado = "cumplida";
+                    if(decision === resultadoEsperado){
+                        resolve("Resultado esperado");
+                    } else {
+                        reject("Resultado no esperado");
+                    }
+                });
+            }
+            promesa()
+            .then(function(r){
+                console.log(r);
+                console.log("Felicidades, promesa cumplida");
+            })
+            .catch(function(r){
+                console.log(r);
+                console.log("Loser, promesa incumplida");
+            })
+            .then(function(){
+                console.log("Independientemente del resultado la vida sigue");
+            });
+
+            promesa()
+            .then((r)=>{
+                console.log(r);
+                console.log("Felicidades, promesa cumplida");
+                return("Fin del then()");
+            }).catch((r) => {
+                console.log(r);
+                console.log("Loser, promesa incumplida");
+                return("Fin del catch()");
+            }).then((r) => {
+                console.log(r);
+                console.log("Independientemente del resultado la vida sigue");
+            });
+
+            //El await solo se puede usar con una función asíncrona
+        </script>
+    </body>
+</html>
