@@ -6,7 +6,7 @@ import Layouts from 'vite-plugin-vue-layouts'
 import Vue from '@vitejs/plugin-vue'
 import VueRouter from 'unplugin-vue-router/vite'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
-
+import mkcert from 'vite-plugin-mkcert'
 // Utilities
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
@@ -16,6 +16,7 @@ export default defineConfig({
   plugins: [
     VueRouter(),
     Layouts(),
+    mkcert(),
     Vue({
       template: { transformAssetUrls }
     }),

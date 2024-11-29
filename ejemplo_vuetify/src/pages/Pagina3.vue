@@ -1,14 +1,13 @@
 <template>
   <div>
-    <h2 v-if="seleccionado"> Película: {{ seleccionado.movie }}</h2>
-    <Lista :peliculas="peliculas" @nombre_pelicula="funcion_nombre" @editar="mostrarCuadro" @borrar="eliminar"/>
-
     <div v-if="mostrarFormulario" class="modal">
       <Cuadro
         :pelicula="seleccionado" 
         @editar_informacion="guardarCambios" 
       />
     </div>
+    <h2 v-if="seleccionado"> Película: {{ seleccionado.movie }}</h2>
+    <Lista :peliculas="peliculas" @nombre_pelicula="funcion_nombre" @editar="mostrarCuadro" @borrar="eliminar"/>
     
   </div>
 </template>

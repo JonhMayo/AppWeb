@@ -12,6 +12,7 @@
       <v-list-item link to="/" title="Inicio"></v-list-item>
       <v-list-item link to="/pagina2" title="Cactus"></v-list-item>
       <v-list-item link to="/pagina3" title="Peliculas"></v-list-item>
+      <v-list-item link to="/Inicio" title="Estudiantes"></v-list-item>
     </v-navigation-drawer>
 
     <v-main>
